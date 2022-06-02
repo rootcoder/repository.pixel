@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<addon id="plugin.video.jellyfin" name="Jellyfin" version="0.7.8" provider-name="Jellyfin Contributors, angelblue05">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.requests" version="2.22.0+matrix.1" />
+    <import addon="script.module.dateutil" version="2.8.1+matrix.1" />
+    <import addon="script.module.six" version="1.14.0+matrix.2" />
+    <import addon="script.module.kodi-six" version="0.1.3+1" />
+    <import addon="script.module.addon.signals" version="0.0.5+matrix.1" />
+    <import addon="script.module.websocket" version="0.58.0+matrix.1" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video audio image</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="login">
+  </extension>
+  <extension point="kodi.context.item">
+    <menu id="kodi.core.main">
+      <item library="context.py">
+        <label>30401</label>
+        <visible>[!String.IsEmpty(ListItem.DBID) + !String.IsEqual(ListItem.DBID,-1) | !String.IsEmpty(ListItem.Property(jellyfinid))] + !String.IsEmpty(Window(10000).Property(jellyfin_context))</visible>
+      </item>
+      <item library="context_play.py">
+        <label>30402</label>
+        <visible>[[!String.IsEmpty(ListItem.DBID) + !String.IsEqual(ListItem.DBID,-1) | !String.IsEmpty(ListItem.Property(jellyfinid))] + [String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,episode)]] + !String.IsEmpty(Window(10000).Property(jellyfin_context_transcode))</visible>
+      </item>
+    </menu>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <language>en</language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+    <forum>https://forum.jellyfin.org</forum>
+    <website>https://jellyfin.org/</website>
+    <source>https://github.com/jellyfin/jellyfin-kodi</source>
+    <summary lang="en" />
+    <description lang="en">Welcome to Jellyfin for Kodi!
+A whole new way to manage and view your media library. The Jellyfin addon for Kodi combines the best of Kodi - ultra smooth navigation, beautiful UIs and playback of any file under the sun, and Jellyfin - the most powerful fully open source multi-client media metadata indexer and server.
+
+Jellyfin for Kodi is the absolute best way to enjoy the incredible Kodi playback engine combined with the power of Jellyfin's centralized database. Features:
+* Direct integration with the Kodi library for native Kodi speed
+* Instant synchronization with the Jellyfin server
+* Full support for Movie, TV and Music collections
+* Jellyfin Server direct stream and transcoding support - use Kodi when you are away from home!</description>
+    <news>v0.7.8 (2022-05-02):
+New features and improvements
+-----------------------------
++ Add an option to transcode HEVC RExt (#631) @EdiTurn
++ Attempt to re-establishe websocket communication if the connection fails (#598) @mcarlton00
++ Verify ssl by default (#590) @oddstr13
+
+Bug Fixes
+---------
++ Skip syncing missing episodes (#628) @mcarlton00
++ Fix opening the addon menu from the settings page (#630) @mcarlton00
+
+CI &amp; build changes
+------------------
++ Bump codecov/codecov-action from 3.0.0 to 3.1.0 (#642) @dependabot
++ Bump github/codeql-action from 1 to 2 (#641) @dependabot
++ Bump codecov/codecov-action from 2.1.0 to 3.0.0 (#634) @dependabot
++ Bump actions/upload-artifact from 2 to 3 (#633) @dependabot
++ Bump release-drafter/release-drafter from 5.18.1 to 5.19.0 (#620) @dependabot
++ Bump actions/checkout from 2 to 3 (#618) @dependabot
++ Bump actions/setup-python from 2 to 3 (#617) @dependabot
++ Bump release-drafter/release-drafter from 5.15.0 to 5.18.1 (#614) @dependabot
++ Bump burnett01/rsync-deployments from 5.1 to 5.2 (#605) @dependabot</news>
+    <assets>
+      <icon>resources/icon.png</icon>
+      <fanart>resources/fanart.png</fanart>
+    </assets>
+  </extension>
+</addon>

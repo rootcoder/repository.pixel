@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.pixel"
+                name="Pixel Add-on Repository"
+                version="1.0.0"
+                provider-name="rootcoder">
+        <extension point="xbmc.addon.repository">
+        <dir>
+                        <info>https://raw.githubusercontent.com/rootcoder/repository.pixel/nexus/_repo/addons.xml.gz</info>
+                        <checksum verify="sha256">https://raw.githubusercontent.com/rootcoder/repository.pixel/nexus/_repo/addons.xml.gz.sha256</checksum>
+                        <datadir zip="true">https://raw.githubusercontent.com/rootcoder/repository.pixel/nexus/_repo/</datadir>
+                        <hashes>sha256</hashes>
+                </dir>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+                <summary>Pixel Repositório</summary>
+                <description></description>
+                <platform>all</platform>
+        </extension>
+</addon>
